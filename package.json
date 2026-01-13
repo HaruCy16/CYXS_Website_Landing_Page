@@ -1,0 +1,16 @@
+{
+  "scripts": {
+    "build": "postcss styles.css -o dist/styles.css",
+    "watch": "postcss styles.css -o dist/styles.css --watch",
+    "dev": "live-server"
+  },
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.1.18",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.18"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2",
+    "postcss-cli": "^11.0.1"
+  }
+}
