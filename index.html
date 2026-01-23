@@ -5,10 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CYXS Landing Page</title>
   <link href="dist/styles.css" rel="stylesheet">
-</head>
-<body>
-  <section class="min-h-screen flex items-center justify-center bg-gray-100">
-    <h1 class="text-4xl font-bold text-blue-600">Welcome to CYXS Landing Page</h1>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tiny5&display=swap" rel="stylesheet">
+</head>   
+<body class="bg-primary">
+  <section class="min-h-screen flex items-center justify-center bg-secondary" style="background-image: url('assets/hero-section.png'); background-size: cover; background-position: center;">
+    <div class="text-center">
+      <img src="assets/logo-cyxs-resized.png" alt="CYXS Logo" class="mx-auto w-48 h-48 object-contain">
+      <h1 class="text-4xl font-primary font-bold text-white mb-4">CYXS</h1>
+      <p class="text-white text-lg mb-8 max-w-2xl mx-auto">We design conversion-focused websites and creative systems that turn attention into action.</p>
+      <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg mb-12">Book a Discovery Call</button>
+      <div class="flex flex-col items-center">
+        <p class="text-white text-sm mb-2">Learn more about us</p>
+        <svg class="w-6 h-6 text-white animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+        </svg>
+      </div>
+    </div>
   </section>
 </body>
 </html>

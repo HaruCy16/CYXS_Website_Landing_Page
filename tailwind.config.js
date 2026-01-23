@@ -6,8 +6,12 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        primary: ["copixel", "sans-serif"],
-        secondary: ["montserrat", "sans-serif"],
+        primary: ["Tiny5", "sans-serif"],
+        secondary: ["Montserrat", "sans-serif"],
+      },
+      backgroundColor: {
+        primary: "#0B0924",
+        secondary: "#F3F4F6",
       },
     },
   },
