@@ -1,2 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Tiny5&display=swap');
 @import "tailwindcss";
+
+@theme {
+  --font-primary: 'Tiny5', sans-serif;
+  --color-primary: #1a1a2e;
+  --color-secondary: #16213e;
+}
