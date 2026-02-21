@@ -505,6 +505,10 @@ video {
   margin-left: auto;
   margin-right: auto;
 }
+.mx-2{
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
 .mb-12{
   margin-bottom: 3rem;
 }
@@ -568,6 +572,13 @@ video {
 .rounded-full{
   border-radius: 9999px;
 }
+.border-b{
+  border-bottom-width: 1px;
+}
+.border-white{
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity, 1));
+}
 .bg-button{
   --tw-bg-opacity: 1;
   background-color: rgb(67 61 139 / var(--tw-bg-opacity, 1));
@@ -598,6 +609,10 @@ video {
 .py-6{
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
+}
+.px-2{
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
 .text-center{
   text-align: center;
