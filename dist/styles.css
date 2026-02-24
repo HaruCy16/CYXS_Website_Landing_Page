@@ -505,10 +505,6 @@ video {
   margin-left: auto;
   margin-right: auto;
 }
-.mx-2{
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
-}
 .mb-12{
   margin-bottom: 3rem;
 }
@@ -521,6 +517,9 @@ video {
 .mb-8{
   margin-bottom: 2rem;
 }
+.ml-20{
+  margin-left: 5rem;
+}
 .flex{
   display: flex;
 }
@@ -529,6 +528,9 @@ video {
 }
 .h-6{
   height: 1.5rem;
+}
+.h-auto{
+  height: auto;
 }
 .min-h-screen{
   min-height: 100vh;
@@ -539,8 +541,29 @@ video {
 .w-6{
   width: 1.5rem;
 }
+.w-full{
+  width: 100%;
+}
+.w-3{
+  width: 0.75rem;
+}
+.w-10{
+  width: 2.5rem;
+}
+.w-60{
+  width: 15rem;
+}
+.w-80{
+  width: 20rem;
+}
+.w-0{
+  width: 0px;
+}
 .max-w-3xl{
   max-width: 48rem;
+}
+.max-w-6xl{
+  max-width: 72rem;
 }
 @keyframes bounce{
 
@@ -559,6 +582,9 @@ video {
 }
 .cursor-pointer{
   cursor: pointer;
+}
+.flex-row{
+  flex-direction: row;
 }
 .flex-col{
   flex-direction: column;
@@ -594,6 +620,9 @@ video {
 .object-contain{
   object-fit: contain;
 }
+.object-cover{
+  object-fit: cover;
+}
 .px-4{
   padding-left: 1rem;
   padding-right: 1rem;
@@ -610,12 +639,14 @@ video {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
 }
-.px-2{
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+.text-left{
+  text-align: left;
 }
 .text-center{
   text-align: center;
+}
+.text-right{
+  text-align: right;
 }
 .font-primary{
   font-family: Tiny5, sans-serif;
@@ -632,6 +663,10 @@ video {
   font-size: 0.875rem;
   line-height: 1.25rem;
 }
+.text-3xl{
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
 .font-bold{
   font-weight: 700;
 }
@@ -645,4 +680,10 @@ video {
 .hover\:bg-blue-700:hover{
   --tw-bg-opacity: 1;
   background-color: rgb(29 78 216 / var(--tw-bg-opacity, 1));
+}
+@media (min-width: 768px){
+
+  .md\:flex-row{
+    flex-direction: row;
+  }
 }
