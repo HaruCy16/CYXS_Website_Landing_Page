@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build": "postcss styles.css -o dist/styles.css",
+    "build": "rm -rf public && mkdir -p public/dist && cp index.html public/index.html && cp -R assets public/assets && postcss styles.css -o dist/styles.css && cp dist/styles.css public/dist/styles.css",
     "watch": "postcss styles.css -o dist/styles.css --watch",
     "dev": "live-server"
   },

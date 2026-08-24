@@ -10,6 +10,7 @@ yarn.lock
 
 # Build and dist directories
 dist/
+public/
 build/
 .output/
 
