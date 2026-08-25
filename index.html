@@ -189,12 +189,15 @@
             <p class="contact-copy">Tell us what you are building, what feels stuck, or what you want to make impossible to ignore. We will come back with a useful next step.</p>
             <p class="contact-meta">Typical first response: within 2 business days.</p>
           </div>
-          <form class="lead-form" id="lead-form">
+          <form class="lead-form" id="lead-form" action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="db124bb9-34b0-4cd2-8731-c95ac3771cc1">
+            <input type="hidden" name="subject" value="New CYXS project inquiry">
+            <input type="hidden" name="from_name" value="CYXS Website">
             <label for="name">Your name<input id="name" name="name" type="text" autocomplete="name" placeholder="Alex Morgan" required></label>
             <label for="email">Work email<input id="email" name="email" type="email" autocomplete="email" placeholder="alex@company.com" required></label>
-            <label for="project">What are you working on?<textarea id="project" name="project" rows="4" placeholder="A new site, a clearer offer, a bigger launch..." required></textarea></label>
+            <label for="message">What are you working on?<textarea id="message" name="message" rows="4" placeholder="A new site, a clearer offer, a bigger launch..." required></textarea></label>
             <button class="button button-primary button-full" type="submit">Start the conversation <span aria-hidden="true">↗</span></button>
-            <p class="form-note" id="form-note">No pressure. Just a clear first step.</p>
+            <p class="form-note" id="form-note" aria-live="polite">No pressure. Just a clear first step.</p>
           </form>
         </div>
       </section>
@@ -233,12 +236,44 @@
       header.classList.toggle('is-scrolled', window.scrollY > 24);
     }, { passive: true });
 
-    document.getElementById('lead-form').addEventListener('submit', (event) => {
+    const leadForm = document.getElementById('lead-form');
+    const submitBtn = leadForm.querySelector('button[type="submit"]');
+    const formNote = document.getElementById('form-note');
+
+    leadForm.addEventListener('submit', async (event) => {
       event.preventDefault();
-      const note = document.getElementById('form-note');
-      note.textContent = 'Thanks. Your note is ready for the CYXS team. Connect this form to your inbox or booking tool before launch.';
-      note.classList.add('is-success');
-      event.currentTarget.reset();
+
+      const formData = new FormData(leadForm);
+      const originalContent = submitBtn.innerHTML;
+      submitBtn.innerHTML = 'Sending...';
+      submitBtn.disabled = true;
+      submitBtn.setAttribute('aria-busy', 'true');
+      formNote.textContent = 'Sending your note...';
+      formNote.classList.remove('is-success', 'is-error');
+
+      try {
+        const response = await fetch(leadForm.action, {
+          method: 'POST',
+          body: formData,
+          headers: { Accept: 'application/json' }
+        });
+        const data = await response.json();
+
+        if (!response.ok || data.success === false) {
+          throw new Error(data.message || 'Something went wrong while sending your message.');
+        }
+
+        formNote.textContent = 'Thanks. Your message has been sent. We will be in touch within 2 business days.';
+        formNote.classList.add('is-success');
+        leadForm.reset();
+      } catch (error) {
+        formNote.textContent = error.message || 'Something went wrong. Please try again or email us directly.';
+        formNote.classList.add('is-error');
+      } finally {
+        submitBtn.innerHTML = originalContent;
+        submitBtn.disabled = false;
+        submitBtn.removeAttribute('aria-busy');
+      }
     });
 
     document.getElementById('year').textContent = new Date().getFullYear();
