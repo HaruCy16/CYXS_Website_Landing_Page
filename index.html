@@ -203,6 +203,18 @@
       </section>
     </main>
 
+    <div class="thank-you-modal" id="thank-you-modal" role="dialog" aria-modal="true" aria-labelledby="thank-you-title" aria-describedby="thank-you-description" aria-hidden="true" hidden>
+      <div class="thank-you-card">
+        <button class="modal-close" id="modal-close" type="button" aria-label="Close thank-you message">×</button>
+        <div class="modal-mark" aria-hidden="true">✓</div>
+        <p class="eyebrow"><span class="eyebrow-line"></span> Message received</p>
+        <h2 id="thank-you-title">Thanks for reaching out.</h2>
+        <p id="thank-you-description">Your note is on its way to the CYXS team. We’ll review it and get back to you within 2 business days.</p>
+        <div class="modal-next-step"><span>Next step</span><strong>Keep making it matter.</strong></div>
+        <button class="button button-primary button-full" id="thank-you-close" type="button">Back to CYXS <span aria-hidden="true">↗</span></button>
+      </div>
+    </div>
+
     <footer class="site-footer">
       <div class="container footer-wrap">
         <a class="brand" href="#top" aria-label="Back to CYXS home"><img src="assets/logo-cyxs-resized.png" alt="" class="brand-mark"><span>CYXS<span class="brand-dot">.</span></span></a>
@@ -239,6 +251,36 @@
     const leadForm = document.getElementById('lead-form');
     const submitBtn = leadForm.querySelector('button[type="submit"]');
     const formNote = document.getElementById('form-note');
+    const thankYouModal = document.getElementById('thank-you-modal');
+    const modalClose = document.getElementById('modal-close');
+    const thankYouClose = document.getElementById('thank-you-close');
+    let lastFocusedElement;
+
+    const openThankYouModal = () => {
+      lastFocusedElement = document.activeElement;
+      thankYouModal.hidden = false;
+      thankYouModal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('modal-open');
+      requestAnimationFrame(() => thankYouModal.classList.add('is-visible'));
+      thankYouClose.focus();
+    };
+
+    const closeThankYouModal = () => {
+      thankYouModal.classList.remove('is-visible');
+      thankYouModal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('modal-open');
+      window.setTimeout(() => { thankYouModal.hidden = true; }, 180);
+      lastFocusedElement?.focus();
+    };
+
+    modalClose.addEventListener('click', closeThankYouModal);
+    thankYouClose.addEventListener('click', closeThankYouModal);
+    thankYouModal.addEventListener('click', (event) => {
+      if (event.target === thankYouModal) closeThankYouModal();
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !thankYouModal.hidden) closeThankYouModal();
+    });
 
     leadForm.addEventListener('submit', async (event) => {
       event.preventDefault();
@@ -266,6 +308,7 @@
         formNote.textContent = 'Thanks. Your message has been sent. We will be in touch within 2 business days.';
         formNote.classList.add('is-success');
         leadForm.reset();
+        openThankYouModal();
       } catch (error) {
         formNote.textContent = error.message || 'Something went wrong. Please try again or email us directly.';
         formNote.classList.add('is-error');
